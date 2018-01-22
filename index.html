@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<link rel="stylesheet" href="static/style.css">
+	<link rel="stylesheet" href="static/vue-treeselect.min.css">
+    <title>dxcb</title>
+	<style>
+	html
+{
+    background: url('http://sjbz.fd.zol-img.com.cn/t_s1080x1920c/g5/M00/01/0B/ChMkJloFXkCINxDRAAqPhIj1JOAAAiBnAAYFT4ACo-c046.jpg');
+    repeat: no-repeat;
+    background-attachment:fixed;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://sjbz.fd.zol-img.com.cn/t_s1080x1920c/g5/M00/01/0B/ChMkJloFXkCINxDRAAqPhIj1JOAAAiBnAAYFT4ACo-c046.jpg', sizingMethod='scale');
+    -ms-filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://sjbz.fd.zol-img.com.cn/t_s1080x1920c/g5/M00/01/0B/ChMkJloFXkCINxDRAAqPhIj1JOAAAiBnAAYFT4ACo-c046.jpg', sizingMethod='scale');
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+}
+    
+      .mt-range {
+        width: 100%;
+      }
+	</style>
+  </head>
+  <body>
+    <div id="app">
+		<mt-navbar v-model="selected">
+		<mt-tab-item id="1">说明</mt-tab-item>
+		<mt-tab-item id="2">功能</mt-tab-item>
+		<mt-tab-item id="3">设置</mt-tab-item>
+		</mt-navbar>
+
+		<!-- tab-container -->
+		<mt-tab-container v-model="selected" :swipeable="false">
+			<mt-tab-container-item id="1">
+			<p style="margin-left:30px;color:#26a2ff;">欢迎使用本脚本扒拉扒拉扒拉扒拉扒拉扒拉扒拉扒拉扒拉扒拉扒拉扒拉扒拉扒拉扒拉扒拉扒拉扒拉扒拉扒拉扒拉扒拉扒拉扒拉扒拉扒拉扒拉扒拉扒拉扒拉扒拉扒拉扒拉</p>
+			</mt-tab-container-item>
+			
+			<mt-tab-container-item id="2">
+				<mt-food></mt-food>
+				
+				<mt-cell title="头像" label="选择头像">
+					<mt-button size="small" type="primary" icon="more">选择</mt-button>
+				</mt-cell>
+				
+				<cell-select :title="sel_title" :source="sel_source" :label="sel_label"></cell-select>
+			
+				<cell-select :title="sel2_title" :source="sel2_source" :label="sel2_label"></cell-select>
+			
+				<cell-select :title="sel3_title" :source="sel3_source" :label="sel3_label"></cell-select>
+			
+				<cell-select :title="sel4_title" :source="sel4_source" :label="sel4_label"></cell-select>
+				
+				<mt-cell title="选项" :label="switch_label">
+					<mt-switch v-model="switch_value" @change="handleChange">mos</mt-switch>
+				</mt-cell>
+				
+				<mt-cell title="选项2" :label="switch_label">
+					<mt-switch v-model="switch_value" @change="handleChange">asd</mt-switch>
+				</mt-cell>
+	
+			</mt-tab-container-item>
+			
+			<mt-tab-container-item id="3">
+			</mt-tab-container-item>
+		
+		</mt-tab-container>
+	</div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
