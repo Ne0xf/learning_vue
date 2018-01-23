@@ -29,15 +29,7 @@ let vm = new Vue({
 	
 	data:{
 		selected:"1",
-		rangeValue:10,
-		select_value:null,
-		sel_value:null,
-		sel_value2:null,
-		sel_value3:null,
-		sel_value4:null,
-		placeholder1:'请选择出征队伍',
-		sel_title:'出征队伍',
-		sel_label:'多个表示轮流出征',
+		switch_label:null,
 		sel_source:[
 		{id:'a',label:'1队'},
 		{id:'b',label:'2队'},
@@ -45,9 +37,7 @@ let vm = new Vue({
 		{id:'d',label:'4队'},
 		{id:'e',label:'5队'},
 		],
-		sel2_title:'附加功能',
-		placeholder2:'请选择附加功能',
-		sel2_label:'附加功能',
+		switch_label2:null,
 		sel2_source:[
 		{id:'a',label:'挖矿'},
 		{id:'b',label:'扎营'},
@@ -58,9 +48,7 @@ let vm = new Vue({
 		{id:'g',label:'刷S'},
 		{id:'h',label:'刷SS'},
 		],
-		sel3_title:'出征地图',
-		placeholder3:'请选择出征地图',
-		sel3_label:'多选表示刷多个',
+
 		sel3_source:[
 		{id:'a',label:'1图:庇护所之地'},
 		{id:'b',label:'2图:荒野'},
@@ -79,9 +67,6 @@ let vm = new Vue({
 		{id:'o',label:'15图:世界尽头'},
 		{id:'p',label:'16图:南部海域'},
 		],
-		sel4_title:'市场购买',
-		placeholder4:'请选择购买物品',
-		sel4_label:'不选表示不去市场',
 		sel4_source:[
 		{id:'a',label:'秘银'},
 		{id:'b',label:'大型秘银'},
@@ -97,11 +82,15 @@ let vm = new Vue({
 		{id:'l',label:'稀土'},
 		{id:'m',label:'乙太'},
 		],
-		switch_value:false,
-		switch_label:null,
-		switch_value2:true,
-		switch_label2:null,
-		//handleChange:null,
+		postdata:{
+			food:null,
+			home:null,
+			find:null,
+			troop:null,
+			attached:null,
+			map:null,
+			shop:null,
+		},
 	},
 	mounted:function() {
 		//this.switch_value = false
@@ -135,14 +124,9 @@ let vm = new Vue({
 			
 		},
 		submit:function(){
-			Indicator.open('正在提交...');
-			console.log('food: '+this.rangeValue);
-			console.log('回: '+this.switch_value);
-			console.log('寻: '+this.switch_value2);
-			console.log(this.sel_value);
-			console.log("2:"+this.sel_value2);
-			console.log(this.sel_value3);
-			console.log(this.sel_value4);
+			console.log(this.postdata.food)
+			//Indicator.open('正在提交...');
+			
 			/* axios.post('/user', {
 				firstName: 'Fred',
 				lastName: 'Flintstone'
@@ -163,7 +147,10 @@ let vm = new Vue({
 			},5000) */
 		},
 		getselect(val){
-			this[val.key] = val.value
+			this['postdata'][val.key] = val.value
+		},
+		range_emit(val){
+			this.postdata.food = val
 		}
 	}
 })
