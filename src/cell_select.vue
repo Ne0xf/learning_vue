@@ -9,7 +9,7 @@
 		</div>
 		
 		<div class="mint-cell-value" style="flex: 2.5;position: relative;">
-			<treeselect v-model="value" :multiple="true" :options="source" />
+			<treeselect v-model="valuecree" :multiple="true" :options="source" :placeholder="placeholder"/>
 		</div>
 	</div>
 	<div class="mint-cell-right"></div>
@@ -17,23 +17,26 @@
 
 </template>
 
-<style>
-
-</style>
-
 <script>
 
   export default {
 	name: 'cell-select',
-	data(){
-		return{
-			value:null,
-		}
-	},
 	props:{
-		'title':{},
-		'label':{},
-		'source':{}
+		title:String,
+		label:String,
+		source:{},
+		placeholder:String,
+		keys:String
 	},
+	computed:{
+		valuecree:{
+			get() {
+				
+			},
+			set(val) {
+				this.$emit('updateselect',{key:this.keys,value:val});
+			}
+		}
+	}
   }
 </script>

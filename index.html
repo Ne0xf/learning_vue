@@ -9,11 +9,11 @@
 	<style>
 	html
 {
-    background: url('http://sjbz.fd.zol-img.com.cn/t_s1080x1920c/g5/M00/01/0B/ChMkJloFXkCINxDRAAqPhIj1JOAAAiBnAAYFT4ACo-c046.jpg');
+    background: url('static/a.jpg');
     repeat: no-repeat;
     background-attachment:fixed;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://sjbz.fd.zol-img.com.cn/t_s1080x1920c/g5/M00/01/0B/ChMkJloFXkCINxDRAAqPhIj1JOAAAiBnAAYFT4ACo-c046.jpg', sizingMethod='scale');
-    -ms-filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://sjbz.fd.zol-img.com.cn/t_s1080x1920c/g5/M00/01/0B/ChMkJloFXkCINxDRAAqPhIj1JOAAAiBnAAYFT4ACo-c046.jpg', sizingMethod='scale');
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='static/a.jpg', sizingMethod='scale');
+    -ms-filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='static/a.jpg', sizingMethod='scale');
     background-size: cover;
     -moz-background-size: cover;
     -webkit-background-size: cover;
@@ -41,24 +41,20 @@
 			<mt-tab-container-item id="2">
 				<mt-food></mt-food>
 				
-				<mt-cell title="头像" label="选择头像">
-					<mt-button size="small" type="primary" icon="more">选择</mt-button>
+				<cell-select :title="sel_title" :source="sel_source" :label="sel_label" :placeholder="placeholder1" @updateselect="getselect" keys="sel_value"></cell-select>
+			
+				<cell-select :title="sel2_title" :source="sel2_source" :label="sel2_label" :placeholder="placeholder2" @updateselect="getselect" keys="sel_value2"></cell-select>
+			
+				<cell-select :title="sel3_title" :source="sel3_source" :label="sel3_label" :placeholder="placeholder3" @updateselect="getselect" keys="sel_value3"></cell-select>
+			
+				<cell-select :title="sel4_title" :source="sel4_source" :label="sel4_label" :placeholder="placeholder4" @updateselect="getselect" keys="sel_value4"></cell-select>
+				
+				<mt-cell title="回城方式" label="回城方式">
+					<mt-switch v-model="switch_value" @change="handleChange">{{switch_label}}</mt-switch>
 				</mt-cell>
 				
-				<cell-select :title="sel_title" :source="sel_source" :label="sel_label"></cell-select>
-			
-				<cell-select :title="sel2_title" :source="sel2_source" :label="sel2_label"></cell-select>
-			
-				<cell-select :title="sel3_title" :source="sel3_source" :label="sel3_label"></cell-select>
-			
-				<cell-select :title="sel4_title" :source="sel4_source" :label="sel4_label"></cell-select>
-				
-				<mt-cell title="选项" :label="switch_label">
-					<mt-switch v-model="switch_value" @change="handleChange">mos</mt-switch>
-				</mt-cell>
-				
-				<mt-cell title="选项2" :label="switch_label">
-					<mt-switch v-model="switch_value" @change="handleChange">asd</mt-switch>
+				<mt-cell title="寻怪模式" label="推荐自定路线">
+					<mt-switch v-model="switch_value2" @change="handleChange2">{{switch_label2}}</mt-switch>
 				</mt-cell>
 	
 			</mt-tab-container-item>
@@ -67,6 +63,8 @@
 			</mt-tab-container-item>
 		
 		</mt-tab-container>
+		<p></p>
+		<div class="page-button-group"><mt-button type="primary" size="large" @click.native="submit">提交</mt-button></div>
 	</div>
     <!-- built files will be auto injected -->
   </body>
