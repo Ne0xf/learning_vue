@@ -18,25 +18,30 @@
 </template>
 
 <script>
+import Treeselect from '@riophae/vue-treeselect';
 
-  export default {
+export default {
 	name: 'cell-select',
+	components: {
+		"treeselect":Treeselect,
+	},
 	props:{
 		title:String,
 		label:String,
 		source:{},
 		placeholder:String,
-		keys:String
+		keys:String,
+		value:Array,
 	},
 	computed:{
 		valuecree:{
 			get() {
-				
+				return this.value;
 			},
 			set(val) {
-				this.$emit('updateselect',{key:this.keys,value:val});
+				//this.value = val;				this.$emit('updateselect',{key:this.keys,value:val});
 			}
 		}
 	}
-  }
+}
 </script>

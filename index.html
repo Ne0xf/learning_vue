@@ -29,7 +29,7 @@
 		<mt-navbar v-model="selected">
 		<mt-tab-item id="1">说明</mt-tab-item>
 		<mt-tab-item id="2">功能</mt-tab-item>
-		<mt-tab-item id="3">设置</mt-tab-item>
+		<mt-tab-item id="3">高级</mt-tab-item>
 		</mt-navbar>
 
 		<!-- tab-container -->
@@ -39,15 +39,15 @@
 			</mt-tab-container-item>
 			
 			<mt-tab-container-item id="2">
-				<mt-food></mt-food>{{postdata.food}}
+				<mt-food @range_emit="getfood" v-model="postdata.food"></mt-food>
 				
-				<cell-select title="出征队伍" :source="sel_source" label="多个表示轮流出征" placeholder="请选择出征队伍" @updateselect="getselect" keys="troop"></cell-select>
+				<cell-select title="出征队伍" :source="sel_source" label="多个表示轮流出征" placeholder="请选择出征队伍" @updateselect="getselect" keys="troop" v-model="postdata.troop"></cell-select>
 			
-				<cell-select title="附加功能" :source="sel2_source" label="附加功能" placeholder="请选择附加功能" @updateselect="getselect" keys="attached"></cell-select>
+				<cell-select title="附加功能" :source="sel2_source" label="附加功能" placeholder="请选择附加功能" @updateselect="getselect" keys="attached" v-model="postdata.attached"></cell-select>
 			
-				<cell-select title="出征地图" :source="sel3_source" label="请选择出征地图" placeholder="多选表示刷多个" @updateselect="getselect" keys="map"></cell-select>
+				<cell-select title="出征地图" :source="sel3_source" label="请选择出征地图" placeholder="多选表示刷多个" @updateselect="getselect" keys="map" v-model="postdata.map"></cell-select>
 			
-				<cell-select title="市场购买" :source="sel4_source" label="不选表示不去市场" placeholder="请选择购买物品" @updateselect="getselect" keys="shop"></cell-select>
+				<cell-select title="市场购买" :source="sel4_source" label="不选表示不去市场" placeholder="请选择购买物品" @updateselect="getselect" keys="shop" v-model="postdata.shop"></cell-select>
 				
 				<mt-cell title="回城方式" label="回城方式">
 					<mt-switch v-model="postdata.home" @change="handleChange">{{switch_label}}</mt-switch>

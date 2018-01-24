@@ -1,30 +1,34 @@
 import Vue from 'vue'
 import axios from 'axios'
-import { Picker ,Navbar, TabItem ,TabContainer, TabContainerItem, Cell,Range,Button ,Switch,Indicator,Toast} from 'mint-ui';
+import { Navbar, TabItem ,TabContainer, TabContainerItem, Cell,Button,Indicator,Toast,Switch} from 'mint-ui';
+//Vue.component(Range.name, Range);
 import cell_select from './cell_select';
 import food from './range';
-import Treeselect from '@riophae/vue-treeselect'
-
-Vue.component(Switch.name, Switch);
-Vue.component(Toast.name, Toast);
-Vue.component(Cell.name, Cell);
-Vue.component(Range.name, Range);
-Vue.component(Picker.name, Picker);
-Vue.component(Button.name, Button);
-//Vue.component(Indicator.name, Indicator);
-Vue.component('treeselect', Treeselect);
 
 Vue.config.productionTip = false;
 /* eslint-disable no-new */
-let vm = new Vue({
+
+function GetQueryString(name)
+{
+     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+     var r = window.location.search.substr(1).match(reg);
+     if(r!=null)
+        return  unescape(r[2]);
+      return null;
+}
+
+new Vue({
   el: '#app',
 	components: {
 		"mt-navbar":Navbar,
 		"mt-tab-item":TabItem,
 		"mt-tab-container":TabContainer,
 		"mt-tab-container-item":TabContainerItem,
+		"mt-cell":Cell,
 		"mt-food":food,
+		"mt-switch":Switch,
 		"cell-select":cell_select,
+		"mt-button":Button,
 	},
 	
 	data:{
@@ -83,16 +87,20 @@ let vm = new Vue({
 		{id:'m',label:'乙太'},
 		],
 		postdata:{
-			food:null,
+			food:100,
 			home:null,
 			find:null,
 			troop:null,
 			attached:null,
 			map:null,
 			shop:null,
+			game:"dxcb",
+			sid:null,
 		},
 	},
 	mounted:function() {
+		this.postdata.troop = ['a','b']
+		this.postdata.attached = ['a','b']
 		//this.switch_value = false
 		if(!this.switch_value){
 			this.switch_label='道具回城'
@@ -124,32 +132,47 @@ let vm = new Vue({
 			
 		},
 		submit:function(){
-			console.log(this.postdata.food)
-			//Indicator.open('正在提交...');
+			console.log(GetQueryString('sid'));
+			console.log(this.postdata);
+			Indicator.open({
+				text: '正在提交...',
+				spinnerType: 'fading-circle'
+			});
+			let sid = GetQueryString('sid')
 			
-			/* axios.post('/user', {
-				firstName: 'Fred',
-				lastName: 'Flintstone'
-			})
-			.then(function (response) {
-				console.log(response);
+			if(sid != ''){
+				this.postdata.sid = sid
+			}
+			
+			
+			axios.post('', this.postdata)
+			.then(function (res) {
+				console.log(res);
+				Indicator.close();
+				if(res.code==1){
+					Toast({
+						message: res.msg,
+						iconClass: 'mintui mintui-success'
+					});
+				}else{
+					Toast(res.msg);
+				}
+				
 			})
 			.catch(function (error) {
-				console.log(error);
-			});
-			
-			setTimeout(function(){
-				Indicator.close();
+				Indicator.close()
+				//console.log(error);
 				Toast({
-					message: '提交成功',
-					iconClass: 'icon icon-success'
+					message: "错误,请联系管理员",
+					iconClass: 'mintui mintui-field-error'
 				});
-			},5000) */
+			});
 		},
 		getselect(val){
 			this['postdata'][val.key] = val.value
 		},
-		range_emit(val){
+		getfood(val){
+			//console.log(val)
 			this.postdata.food = val
 		}
 	}
