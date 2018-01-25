@@ -175,19 +175,23 @@ export default {
 		},
 		submit:function(){
 			console.log(GetQueryString('sid'));
-			console.log(this.postdata);
+			
 			Indicator.open({
 				text: '正在提交...',
 				spinnerType: 'fading-circle'
 			});
 			let sid = GetQueryString('sid')
 			
-			if(sid != ''){
+			if(sid != '' && sid !=null){
 				this.postdata.sid = sid
+			}else{
+				Toast('链接错误');
+				return false;
 			}
+			console.log(JSON.stringify(this.postdata));
 			
 			
-			axios.post('', this.postdata)
+			axios.post('/luapost', 'data='+encodeURIComponent(JSON.stringify(this.postdata)))
 			.then(function (res) {
 				console.log(res);
 				Indicator.close();

@@ -50,7 +50,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: './',
+    assetsPublicPath: './game/21af4a31ea0a70e997356e27c4c5e15f/',
 
     /**
      * Source Maps

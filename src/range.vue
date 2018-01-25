@@ -34,7 +34,6 @@ export default {
 	computed:{
 		model_value:{
 			get(){
-				//console.log(model_value)
 				return this.value
 			},
 			set(val){
