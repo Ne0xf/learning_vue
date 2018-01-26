@@ -9,7 +9,7 @@
 		</div>
 		
 		<div class="mint-cell-value" style="flex: 2.5;position: relative;">
-			<treeselect v-model="valuecree" :multiple="true" :options="source" :placeholder="placeholder"/>
+			<treeselect v-model="valuecree" :multiple="true" :options="source" :placeholder="placeholder" :searchable="false"/>
 		</div>
 	</div>
 	<div class="mint-cell-right"></div>
