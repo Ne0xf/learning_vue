@@ -127,8 +127,8 @@ export default {
 			],
 			postdata:{
 				food:100,
-				home:null,
-				find:null,
+				home:false,
+				find:false,
 				troop:null,
 				attached:null,
 				map:null,
@@ -140,9 +140,8 @@ export default {
 	},
 	
 	mounted:function() {
-		this.postdata.troop = ['a','b']
-		this.postdata.attached = ['a','b']
-		//this.switch_value = false
+		
+		this.switch_value = false
 		if(!this.switch_value){
 			this.switch_label='道具回城'
 		}else{
@@ -188,8 +187,8 @@ export default {
 				Toast('链接错误');
 				return false;
 			}
-			console.log(JSON.stringify(this.postdata));
-			
+			//console.log(JSON.stringify(this.postdata));
+			//return false
 			
 			axios.post('/luapost', 'data='+encodeURIComponent(JSON.stringify(this.postdata)))
 			.then(function (res) {
@@ -215,7 +214,8 @@ export default {
 			});
 		},
 		getselect(val){
-			this['postdata'][val.key] = val.value
+			this['postdata'][val.keys] = val.value
+			//console.log(this.postdata)
 		},
 		getfood(val){
 			//console.log(val)

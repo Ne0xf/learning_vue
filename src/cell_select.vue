@@ -39,7 +39,8 @@ export default {
 				return this.value;
 			},
 			set(val) {
-				//this.value = val;				this.$emit('updateselect',{key:this.keys,value:val});
+				//this.value = val;
+				this.$emit('updateselect',{keys:this.keys,value:val});
 			}
 		}
 	}
